@@ -1,0 +1,114 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    IDENTIFIER
+
+Grammar
+
+Rule 0     S' -> sentence
+Rule 1     sentence -> ACTION ENTITY RELATION MODIFIER SPECIFIC GROUP
+Rule 2     sentence -> ACTION ENTITY RELATION MODIFIER SPECIFIC
+Rule 3     sentence -> ACTION ENTITY RELATION MODIFIER
+Rule 4     sentence -> ACTION ENTITY RELATION
+Rule 5     sentence -> ACTION ENTITY
+Rule 6     sentence -> ACTION
+
+Terminals, with rules where they appear
+
+ACTION               : 1 2 3 4 5 6
+ENTITY               : 1 2 3 4 5
+GROUP                : 1
+IDENTIFIER           : 
+MODIFIER             : 1 2 3
+RELATION             : 1 2 3 4
+SPECIFIC             : 1 2
+error                : 
+
+Nonterminals, with rules where they appear
+
+sentence             : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . sentence
+    (1) sentence -> . ACTION ENTITY RELATION MODIFIER SPECIFIC GROUP
+    (2) sentence -> . ACTION ENTITY RELATION MODIFIER SPECIFIC
+    (3) sentence -> . ACTION ENTITY RELATION MODIFIER
+    (4) sentence -> . ACTION ENTITY RELATION
+    (5) sentence -> . ACTION ENTITY
+    (6) sentence -> . ACTION
+
+    ACTION          shift and go to state 2
+
+    sentence                       shift and go to state 1
+
+state 1
+
+    (0) S' -> sentence .
+
+
+
+state 2
+
+    (1) sentence -> ACTION . ENTITY RELATION MODIFIER SPECIFIC GROUP
+    (2) sentence -> ACTION . ENTITY RELATION MODIFIER SPECIFIC
+    (3) sentence -> ACTION . ENTITY RELATION MODIFIER
+    (4) sentence -> ACTION . ENTITY RELATION
+    (5) sentence -> ACTION . ENTITY
+    (6) sentence -> ACTION .
+
+    ENTITY          shift and go to state 3
+    $end            reduce using rule 6 (sentence -> ACTION .)
+
+
+state 3
+
+    (1) sentence -> ACTION ENTITY . RELATION MODIFIER SPECIFIC GROUP
+    (2) sentence -> ACTION ENTITY . RELATION MODIFIER SPECIFIC
+    (3) sentence -> ACTION ENTITY . RELATION MODIFIER
+    (4) sentence -> ACTION ENTITY . RELATION
+    (5) sentence -> ACTION ENTITY .
+
+    RELATION        shift and go to state 4
+    $end            reduce using rule 5 (sentence -> ACTION ENTITY .)
+
+
+state 4
+
+    (1) sentence -> ACTION ENTITY RELATION . MODIFIER SPECIFIC GROUP
+    (2) sentence -> ACTION ENTITY RELATION . MODIFIER SPECIFIC
+    (3) sentence -> ACTION ENTITY RELATION . MODIFIER
+    (4) sentence -> ACTION ENTITY RELATION .
+
+    MODIFIER        shift and go to state 5
+    $end            reduce using rule 4 (sentence -> ACTION ENTITY RELATION .)
+
+
+state 5
+
+    (1) sentence -> ACTION ENTITY RELATION MODIFIER . SPECIFIC GROUP
+    (2) sentence -> ACTION ENTITY RELATION MODIFIER . SPECIFIC
+    (3) sentence -> ACTION ENTITY RELATION MODIFIER .
+
+    SPECIFIC        shift and go to state 6
+    $end            reduce using rule 3 (sentence -> ACTION ENTITY RELATION MODIFIER .)
+
+
+state 6
+
+    (1) sentence -> ACTION ENTITY RELATION MODIFIER SPECIFIC . GROUP
+    (2) sentence -> ACTION ENTITY RELATION MODIFIER SPECIFIC .
+
+    GROUP           shift and go to state 7
+    $end            reduce using rule 2 (sentence -> ACTION ENTITY RELATION MODIFIER SPECIFIC .)
+
+
+state 7
+
+    (1) sentence -> ACTION ENTITY RELATION MODIFIER SPECIFIC GROUP .
+
+    $end            reduce using rule 1 (sentence -> ACTION ENTITY RELATION MODIFIER SPECIFIC GROUP .)
+
